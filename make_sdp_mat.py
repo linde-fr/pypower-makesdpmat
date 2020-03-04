@@ -10,8 +10,15 @@ from scipy.sparse import coo_matrix, identity
 
 
 def make_sdp_mat(ppc, base_mva):
-    """equivalent of the matlab function compatible with pypower
-    input pypower case file ppc, in this file the r and x are in pu already.
+    """equivalent of the Matpower function 'makesdpmat' for use in python with pypower case format
+    
+    input: pypower case file ppc (in this file the r and x are in pu already)
+    input: base_mva
+    
+    return: functions y_k, y_k_, m_k, yline_ft, yline_tf, y_line_ft, y_line_tf, y_l, y_l_ .
+            each function returns a matrix needed for the SDP relaxation of AC-OPF
+    
+     @author: Daniel Molzahn (PSERC U of Wisc, Madison)
     """
     n_bus = len(ppc['bus'][:, BUS_I])
 
